@@ -77,4 +77,4 @@ This GitHub repository offers an alternative solution that replicates the behavi
 
 - Here is the output of what a successful run looks like:
 
-![successful_main_nb_run.png](/readme_images/successful_main_nb_run.png)
+  ![successful_main_nb_run.png](/readme_images/successful_main_nb_run.png)
