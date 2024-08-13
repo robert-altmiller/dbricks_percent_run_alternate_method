@@ -57,7 +57,7 @@ This GitHub repository offers an alternative solution that replicates the behavi
 
 - Open the __'main.py'__ Databricks notebook, and update the the __'notebook_import_order'__ Python list to specify the order of the root level notebooks (e.g. inventory_data.py, products_data.py, library_imports.py) for import into the __'main.py'__ notebook.  Notebook import order is important because one notebook might be dependent on other Databricks notebooks.  Commit your changes back to the repository from the Databricks workspace.
 
-![update_parameters.png](/readme_images/update_parameters.png)
+  ![update_parameters.png](/readme_images/update_parameters.png)
 
 ### Step 3: Clone the 'dbricks_percent_run_alternate_method' down repo locally in VSCode.
 
