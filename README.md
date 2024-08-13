@@ -49,12 +49,16 @@ This GitHub repository offers an alternative solution that replicates the behavi
 
 ## See The Steps Below For How to Get Started With the %run Replacement
 
-### Step 1: Clone Down the Repo into Databricks Workspace: <br>
+### Step 1: Clone Down the 'dbricks_percent_run_alternate_method' Repo into Databricks Workspace: <br>
 
 - git clone https://github.com/robert-altmiller/dbricks_percent_run_alternate_method.git
 
 ### Step 2: Update User Defined Parameters For Notebook Imports
 
-- Open the __main.py__ Databricks notebook, and update the the __notebook_import_order__ Python list to specify the order of the root level notebooks (e.g. inventory_data.py, products_data.py, library_imports.py) for import into the __main.py__ notebook.  Notebook import order is important because one notebook might be dependent on other notebooks.
+- Open the __'main.py'__ Databricks notebook, and update the the __'notebook_import_order'__ Python list to specify the order of the root level notebooks (e.g. inventory_data.py, products_data.py, library_imports.py) for import into the __'main.py'__ notebook.  Notebook import order is important because one notebook might be dependent on other Databricks notebooks.  Commit your changes back to the repository from the Databricks workspace.
 
 ![update_parameters.png](/readme_images/update_parameters.png)
+
+### Step 3: Clone the 'dbricks_percent_run_alternate_method' down repo locally in VSCode.
+
+![vscode_clone.png](/readme_images/vscode_clone.png)
