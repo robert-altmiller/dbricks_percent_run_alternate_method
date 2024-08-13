@@ -47,7 +47,7 @@ This GitHub repository offers an alternative solution that replicates the behavi
       exec(f"from {nb} import *", globals())
   ```
 
-## See The Steps Below for How to Get Started
+## See The Steps Below For How to Get Started With the %run Replacement
 
 ### Step 1: Clone Down the Repo into Databricks Workspace: <br>
 
