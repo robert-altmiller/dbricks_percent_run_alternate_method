@@ -8,19 +8,19 @@ This GitHub repository offers an alternative solution that replicates the behavi
 
 - Scenario 1: Import Databricks Notebooks Locally in VSCode
 
-You can import Databricks Notebooks directly in a local Python code file using "from notebook1 import *".  This method works because all Databricks notebooks are sync'ed back to a devops repository (e.g. Github) with a .py extension so they can be use locally like regular '.py' files.  See code Python code snippit below to import the library_imports.py, inventory_data.py, and products_data.py Databricks notebooks into a local Python code file.
+- You can import Databricks Notebooks directly in a local Python code file using "from notebook1 import *".  This method works because all Databricks notebooks are sync'ed back to a devops repository (e.g. Github) with a .py extension so they can be use locally like regular '.py' files.  See code Python code snippit below to import the library_imports.py, inventory_data.py, and products_data.py Databricks notebooks into a local Python code file.
 
-```Python
+- ```Python
 notebook_import_order = ["library_imports", "inventory_data", "products_data"]
 for nb in notebook_import_order:
     exec(f"from {nb} import *", globals())
-```
+- ```
 
 - Scenario 2: Import Databricks Notebooks in Other Databricks Notebooks Not Using '%run'
 
-If any of your Databricks notebooks in your devops repository are using '%run' command to import and run other Databricks notebooks these notebooks will not work locally in VSCode without changes.  You will need an alternative method which replicates what the "%run" command does.  You __CANNOT__ replace '%run ./notebook1' with 'from notebook1 import *' within another Databricks notebook in Databricks.  If you could then this would be an easy fix for running Databricks notebook locally in VSCode and in Databricks. Instead you can achieve the same functionality as '%run' within a Databricks notebook by using a Databricks Rest API 2.0 call to read the contents of the Databricks notebook you want to import, then you execute that code using exec(code, globals()).  This also integrates the executed code and results into the active session global namespace.  If you reference the __main.py__ code below this section where is_running_in_databricks() == True is the replacement for '%run'.
+- If any of your Databricks notebooks in your devops repository are using '%run' command to import and run other Databricks notebooks these notebooks will not work locally in VSCode without changes.  You will need an alternative method which replicates what the "%run" command does.  You __CANNOT__ replace '%run ./notebook1' with 'from notebook1 import *' within another Databricks notebook in Databricks.  If you could then this would be an easy fix for running Databricks notebook locally in VSCode and in Databricks. Instead you can achieve the same functionality as '%run' within a Databricks notebook by using a Databricks Rest API 2.0 call to read the contents of the Databricks notebook you want to import, then you execute that code using exec(code, globals()).  This also integrates the executed code and results into the active session global namespace.  If you reference the __main.py__ code below this section where is_running_in_databricks() == True is the replacement for '%run'.
 
-```Python
+- ```Python
 notebook_import_order = ["library_imports", "inventory_data", "products_data"]
 
 def get_order_index(path):
@@ -29,7 +29,6 @@ def get_order_index(path):
       if name in path:
           return idx
   return len(notebook_import_order)  # Return a high index if not found
-
 
 if is_running_in_databricks() == True: # code is running in Databricks
   dir_path = f"/Workspace{dbutils.notebook.entry_point.getDbutils().notebook().getContext().notebookPath().get()}"  # Path to the notebook in Databricks
@@ -42,7 +41,7 @@ if is_running_in_databricks() == True: # code is running in Databricks
 else: # code is running locally (order could be important here)
   for nb in notebook_import_order:
     exec(f"from {nb} import *", globals())
-```
+- ```
 
 ### Clone Down the Repo into Databricks Workspace: <br>
 
@@ -50,6 +49,6 @@ else: # code is running locally (order could be important here)
 
 ## Step 1: Update User Defined Parameters For Notebook Imports
 
-- Open the main.py Databricks notebook, and update the the __notebook_import_order__ Python list to specify the order of the notebooks for import into the __main.py__ notebook.
+- Open the __main.py__ Databricks notebook, and update the the __notebook_import_order__ Python list to specify the order of the root level notebooks for import into the __main.py__ notebook.
 
 ![update_parameters.png](/readme_images/update_parameters.png)
