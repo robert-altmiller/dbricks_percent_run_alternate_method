@@ -17,7 +17,7 @@ This GitHub repository offers an alternative solution that replicates the behavi
       exec(f"from {nb} import *", globals())
   ```
 
-### Scenario 2: Import Databricks Notebooks in Other Databricks Notebooks Not Using '%run'
+### Scenario 2: Import Databricks Notebooks in Other Databricks Notebooks Not Using '%run' Within Databricks
 
 - If any of your Databricks notebooks in your devops repository are using '%run' command to import and run other Databricks notebooks these notebooks will not work locally in VSCode without changes.
 - You will need an alternative method which replicates what the "%run" command does.  You __CANNOT__ replace '%run ./notebook1' with 'from notebook1 import *' within another Databricks notebook in Databricks.  If you could then this would be an easy fix for running Databricks notebook locally in VSCode and in Databricks. 
@@ -47,11 +47,11 @@ This GitHub repository offers an alternative solution that replicates the behavi
       exec(f"from {nb} import *", globals())
   ```
 
-### Clone Down the Repo into Databricks Workspace: <br>
+## Step 1: Clone Down the Repo into Databricks Workspace: <br>
 
 - git clone https://github.com/robert-altmiller/dbricks_percent_run_alternate_method.git
 
-## Step 1: Update User Defined Parameters For Notebook Imports
+## Step 2: Update User Defined Parameters For Notebook Imports
 
 - Open the __main.py__ Databricks notebook, and update the the __notebook_import_order__ Python list to specify the order of the root level notebooks (e.g. inventory_data.py, products_data.py, library_imports.py) for import into the __main.py__ notebook.  Notebook import order is important because one notebook might be dependent on other notebooks.
 
