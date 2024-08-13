@@ -73,7 +73,7 @@ This GitHub repository offers an alternative solution that replicates the behavi
 
 ### Step 5: How to verify successful execution of the main notebook?
 
-- The 'products_data' notebook has the data for __'products_df'__ Spark dataframe, and the 'inventory_data' notebook has the data for __'inventory_df'__ Spark dataframe in the 'main' notebook.  These two notebooks have to be imported into the 'main' notebook successfully in order to display the __'inventory_df'__, __'products_df'__, and __'joined_df'__ dataframes successfully in the 'main' notebook run.  The Python library imports in the library_imports notebook also need to be successfully imported into the main notebook to run certain Spark commands like creating a local Spark Session.
+- The 'products_data' notebook has the data for __'products_df'__ Spark dataframe, and the 'inventory_data' notebook has the data for __'inventory_df'__ Spark dataframe in the 'main' notebook.  These two notebooks have to be imported into the 'main' notebook successfully in order to display the __'inventory_df'__, __'products_df'__, and __'joined_df'__ dataframes successfully in the 'main' notebook run.  The Python library imports in the 'library_imports' notebook also need to be successfully imported into the 'main' notebook to run certain Spark commands like creating a local Spark Session.
 
 - Here is the output of what a successful run looks like:
 
