@@ -48,7 +48,8 @@ else: # code is running locally (order could be important here)
 
 - git clone https://github.com/robert-altmiller/dbricks_percent_run_alternate_method.git
 
-## Step 1: Update User Defined Parameters
-## Navigate to the following folder: <br>
+## Step 1: Update User Defined Parameters For Notebook Imports
 
-![user_parameters.png](/readme_images/user_parameters.png)
+- Open the main.py Databricks notebook, and update the the __notebook_import_order__ Python list to specify the order of the notebooks for import into the __main.py__ notebook.
+
+![update_parameters.png](/readme_images/update_parameters.png)
