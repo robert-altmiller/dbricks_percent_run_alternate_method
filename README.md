@@ -62,3 +62,11 @@ This GitHub repository offers an alternative solution that replicates the behavi
 ### Step 3: Clone the 'dbricks_percent_run_alternate_method' down repo locally in VSCode.
 
 ![vscode_clone.png](/readme_images/vscode_clone.png)
+
+### Step 4: Execute the 'main' notebook in Databricks.
+
+![run_main_in_databricks.png](/readme_images/run_main_in_databricks.png)
+
+### Step 5: Execute the 'main.py' locally in VSCode.
+
+![run_main_in_vscode.png](/readme_images/run_main_in_vscode.png)
