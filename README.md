@@ -47,11 +47,13 @@ This GitHub repository offers an alternative solution that replicates the behavi
       exec(f"from {nb} import *", globals())
   ```
 
-## Step 1: Clone Down the Repo into Databricks Workspace: <br>
+## See The Steps Below for How to Get Started
+
+### Step 1: Clone Down the Repo into Databricks Workspace: <br>
 
 - git clone https://github.com/robert-altmiller/dbricks_percent_run_alternate_method.git
 
-## Step 2: Update User Defined Parameters For Notebook Imports
+### Step 2: Update User Defined Parameters For Notebook Imports
 
 - Open the __main.py__ Databricks notebook, and update the the __notebook_import_order__ Python list to specify the order of the root level notebooks (e.g. inventory_data.py, products_data.py, library_imports.py) for import into the __main.py__ notebook.  Notebook import order is important because one notebook might be dependent on other notebooks.
 
