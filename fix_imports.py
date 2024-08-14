@@ -54,19 +54,19 @@ def execute_rest_api_call(function_call_type, config = None, token = None, jsond
 
 
 def get_nb_content(dbricks_instance, dbricks_pat, notebook_source_path):
-  """convert Databricks notebook to Databricks python file"""
+  """read the contents of a Databricks notebook"""
   jsondata = {}
-  # Request payload
+  # request payload
   params = {
     "path": notebook_source_path,
-    "format": "SOURCE"  # Use "SOURCE" to get the notebook in its source format (Python, Scala, etc.)
+    "format": "SOURCE"  # use "SOURCE" to get the notebook in its source format (Python, Scala, etc.)
   }
   response = execute_rest_api_call(get_request, get_api_config(dbricks_instance, "workspace", "export"), dbricks_pat, jsondata, params)
 
   if response.status_code == 200:
-    # Get the content of the notebook as a base64 encoded string
+    # get the content of the notebook as a base64 encoded string
     notebook_content_base64 = response.json().get("content")
-    # Decode the base64 content to get the notebook source code
+    # decode the base64 content to get the notebook source code
     notebook_content = base64.b64decode(notebook_content_base64).decode("utf-8")
 
   if len(notebook_content) > 0: return notebook_content
@@ -75,15 +75,15 @@ def get_nb_content(dbricks_instance, dbricks_pat, notebook_source_path):
 
 def get_notebook_paths(spark, dbutils, dir_path):
     """get Databricks notebook paths"""
-    # Iterate over all files in the directory
+    # iterate over all files in the directory
     notebook_paths = []
     for root, dirs, files in os.walk(dir_path):
         for file in files:
             file_path = os.path.join(root, file)
-            # Check if the path is a file and read the contents
+            # check if the path is a file and read the contents
             if os.path.isfile(file_path) and "fix_imports.py" not in file_path:
                 try:
-                    databricks_instance = spark.conf.get("spark.databricks.workspaceUrl") # format "adb-723483445396.18.azuredatabricks.net" (no https://) (don't change)
+                    databricks_instance = spark.conf.get("spark.databricks.workspaceUrl") # format "adb-**********.18.azuredatabricks.net" (no https://) (don't change)
                     databricks_pat = dbutils.notebook.entry_point.getDbutils().notebook().getContext().apiToken().get() # format "dapi*****" (don't change)
                     nb_content = get_nb_content(databricks_instance, databricks_pat, file_path)
 
@@ -110,6 +110,7 @@ def fix_imports(spark, dbutils, nb_path, random_int_start, random_int_end):
     databricks_pat = dbutils.notebook.entry_point.getDbutils().notebook().getContext().apiToken().get() # format "dapi*****" (don't change)
     nb_content = get_nb_content(databricks_instance, databricks_pat, nb_path)
 
+    # convert Databricks notebook to Databricks python file
     parent_dir_path = '/'.join(nb_path.split('/')[:-1])
     python_file_name = f"{nb_path.rsplit('/', 1)[1]}_{random.randint(random_int_start, random_int_end)}.py"
     python_file_path = f"{parent_dir_path}/{python_file_name}"
