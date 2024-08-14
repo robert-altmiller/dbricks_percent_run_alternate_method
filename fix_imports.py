@@ -128,7 +128,7 @@ def get_imports(spark, dbutils, notebook_paths, globals):
     for nb_path in notebook_paths:
         module_name, module_path, parent_dir_path, nb_content = fix_imports(spark, dbutils, nb_path, 0, 100)
         if nb_content != None:
-            exec(nb_content, globals) # execute and import the notebook content and add it to the active session globals() namespace.
+            exec(nb_content, globals) # execute the notebook content and add it to the active session globals() namespace.
             print(f"imported and executed code in module: {module_name}")
             os.remove(f"{module_path}")
             print(f"removed module_path: {module_path}\n")
